@@ -27,7 +27,6 @@ public class PurchaseItem {
 	
 	@ManyToOne
 	@JoinColumn(name = "product_id" , referencedColumnName = "id")
-	@OrderBy("id ASC")
 	private Product product;
 
 	public Long getId() {

@@ -32,7 +32,6 @@ public class Employee {
 	
 	@ManyToOne
 	@JoinColumn(name="department_id" , referencedColumnName = "id") // 外鍵(部門序號)
-	@OrderBy("id ASC")
 	private Department department;
 	
 	@OneToMany(mappedBy = "employee")

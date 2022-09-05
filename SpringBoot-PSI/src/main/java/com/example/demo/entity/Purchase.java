@@ -37,7 +37,6 @@ public class Purchase {
 	
 	@ManyToOne
 	@JoinColumn(name = "supplier_id" , referencedColumnName = "id")
-	@OrderBy("id ASC")
 	private Supplier supplier; // 供應商序號
 	
 	
