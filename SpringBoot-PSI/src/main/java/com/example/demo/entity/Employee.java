@@ -1,7 +1,9 @@
 package com.example.demo.entity;
 
-import java.util.LinkedList;
-import java.util.List;
+
+
+
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -35,8 +37,51 @@ public class Employee {
 	
 	@OneToMany(mappedBy = "employee")
 	@OrderBy("id ASC")
-	private List<Order> orders = new LinkedList<>();
+    private Set<Purchase> purchases = new LinkedHashSet<>();	
 	
+	@OneToMany(mappedBy = "employee")
+	@OrderBy("id ASC")
+    private Set<Order> orders = new LinkedHashSet<>();
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public Set<Purchase> getPurchases() {
+		return purchases;
+	}
+
+	public void setPurchases(Set<Purchase> purchases) {
+		this.purchases = purchases;
+	}
+
+	public Set<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
 	
 	
 }
