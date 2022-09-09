@@ -17,7 +17,7 @@ public class PurchaseItem {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(insertable = false,columnDefinition = "Integer default 0")
+	@Column(columnDefinition = "int default 0")
 	private Integer amount; // 採購數量
 	
 	@ManyToOne

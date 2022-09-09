@@ -22,7 +22,7 @@ public class CreateEmployee {
 	public void test() {
 		Department d1 = departmentRepository.findById(1L).get();
 		Department d2 = departmentRepository.findById(2L).get();
-		Department d5 = departmentRepository.findById(5L).get();
+		Department d3 = departmentRepository.findById(3L).get();
 		
 		Employee e1 = new Employee();
 		e1.setName("John");
@@ -34,11 +34,11 @@ public class CreateEmployee {
 		
 		Employee e3 = new Employee();
 		e3.setName("Helen");
-		e3.setDepartment(d5);
+		e3.setDepartment(d3);
 		
 		Employee e4 = new Employee();
 		e4.setName("Bob");
-		e4.setDepartment(d5);
+		e4.setDepartment(d3);
 		
 		employeeRepository.save(e1);
 		employeeRepository.save(e2);
