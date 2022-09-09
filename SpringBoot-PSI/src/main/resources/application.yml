@@ -7,7 +7,7 @@ server:
       
 spring:
   thymeleaf:
-    cache: false
+    cache: false # 幫入 html 可以 F5 刷新
     mode: HTML
     encoding: UTF-8
   datasource:  

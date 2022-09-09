@@ -8,5 +8,59 @@
 	<div>0</div>
 	<div th:text="${2+3}">0</div>
 	<div th:text="'age = ' + ${10+8}">0</div>
+	<div th:text="${time}">What time is it?</div>
+	<div th:text="${user}">user?</div>
+	<div th:text="${user.id}">user id?</div>
+	<div th:text="${user.name}">user name?</div>
+	<div th:text="${user.age}">user age?</div>
+	<div th:text="${user.birth}">user birth?</div>
+	<div th:text="${#dates.format(user.birth, 'yyyy-MM-dd')}">user birth?</div>
+	<form th:object="${user}">
+		id: <input type="number" th:value="*{id}" value="0" /><p />
+		name: <input type="text" th:value="*{name}" value="0" /><p />
+		age: <input type="number" th:value="*{age}" value="0" /><p />
+		birth: <input type="date" th:value="*{#dates.format(birth, 'yyyy-MM-dd')}" value="0" /><p />
+	</form>
+	<table>
+	 <thead>
+	  <tr>
+	   <th>id</th>
+	   <th>name</th>
+	   <th>age</th>
+	   <th>birth</th>
+	  </tr>
+	 </thead>
+	 <tbody>
+	  <tr th:each="user : ${users}">
+	   <td th:text="${user.id}"></td>
+	   <td th:text="${user.name}"></td>
+	   <td th:text="${user.age}"></td>
+	   <td th:text="${#dates.format(user.birth,'yyyy-MM-dd')}"></td>
+	  </tr>
+	 </tbody>
+	</table>
+	<p />
+	<form th:object="${user}">
+		id  : <input type="number" th:value="*{id}" value="0" /><p />
+		name: <select>
+		       <option th:each="u:${users}"
+		               th:selected="${u.id} == *{id}"
+		               th:value="${u.id}"
+		               th:text="${u.name}"/>
+		      </select>
+		      <p />
+		age : <input type="checkbox" 
+		             th:each="u:${users}"
+		             th:checked="${u.age} >= 20" 
+		             th:value="${u.id}"
+		             th:text="${u.age}"/>
+		             <p/>
+		birth:<input type="date" th:value="*{#dates.format(birth, 'yyyy-MM-dd')}" value="0" /><p />
+	  </form>
+	  <hr />
+	  URL1:<p/>
+	  
+	  URL2:<p/> 
+	  <hr />
 </body>
 </html>
