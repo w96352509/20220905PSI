@@ -6,6 +6,10 @@ server:
       charset: UTF-8
       
 spring:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
   thymeleaf:
     cache: false # 幫入 html 可以 F5 刷新
     mode: HTML
