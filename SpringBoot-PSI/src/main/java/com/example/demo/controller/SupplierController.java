@@ -11,59 +11,61 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.Customer;
+import com.example.demo.entity.Supplier;
 import com.example.demo.repository.CustomerRepository;
+import com.example.demo.repository.SupplierRepository;
 
 @Controller
-@RequestMapping("/customer")
-public class CustomerController {
+@RequestMapping("/supplier")
+public class SupplierController {
 
 	@Autowired
-	private CustomerRepository customerRepository;
+	private SupplierRepository supplierRepository;
 	
 	@GetMapping("/")
-	public String index(Model model , @ModelAttribute Customer customer) {
-		model.addAttribute("customers", customerRepository.findAll());
+	public String index(Model model , @ModelAttribute Supplier supplier) {
+		model.addAttribute("suppliers", supplierRepository.findAll());
 		model.addAttribute("_method" , "POST");
-		return "customer";
+		return "supplier";
 	}
 	
 	@GetMapping("/{id}")
 	public String get(@PathVariable("id") Long id , Model model ) {
-		model.addAttribute("customer" , customerRepository.findById(id));
-		model.addAttribute("customers", customerRepository.findAll());
+		model.addAttribute("supplier" , supplierRepository.findById(id));
+		model.addAttribute("suppliers", supplierRepository.findAll());
 		model.addAttribute("_method" , "PUT");
-		return "customer";
+		return "supplier";
 	}
 	
 	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable("id") Long id , Model model ) {
-		model.addAttribute("customer" , customerRepository.findById(id));
-		model.addAttribute("customers", customerRepository.findAll());
+		model.addAttribute("supplier" , supplierRepository.findById(id));
+		model.addAttribute("suppliers", supplierRepository.findAll());
 		model.addAttribute("_method" , "PUT");
-		return "customer-edit";
+		return "supplier-edit";
 	}
 	
 	@PutMapping("/")
-	public String update(Model model , @ModelAttribute Customer customer) {
-		customerRepository.save(customer);
+	public String update(Model model , @ModelAttribute Supplier supplier) {
+		supplierRepository.save(supplier);
 		return "redirect:./";
 	}
 	
 	@PutMapping("/update")
-	public String updatePage(Model model , @ModelAttribute Customer customer) {
-		customerRepository.save(customer);
+	public String updatePage(Model model , @ModelAttribute Supplier supplier) {
+		supplierRepository.save(supplier);
 		return "redirect:./";
 	}
 	
 	@PostMapping("/")
-	public String add(@ModelAttribute Customer customer) {
-		customerRepository.save(customer);
+	public String add(@ModelAttribute Supplier supplier) {
+		supplierRepository.save(supplier);
 		return"redirect:./";
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable("id") Long id) {
-		customerRepository.deleteById(id);
+		supplierRepository.deleteById(id);
 		return"redirect:../";
 	}
 	

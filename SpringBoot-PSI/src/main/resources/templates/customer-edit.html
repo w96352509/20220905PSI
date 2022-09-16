@@ -16,48 +16,20 @@
     <div th:include="header :: header"></div>
     <!-- Content 區 th:field = HTML name / value -->
     <h1>新增員工</h1><p/>
-    <form action="#" th:action="@{/customer/}" 
+    <form action="#" th:action="@{/customer/update}" 
                      th:object="${customer}"
                      th:method="${_method}">
       <div class="form-group">
        <input type="hidden" th:field="*{id}" />
        <label>員工名稱</label>
-       <input type="text" th:field="*{name}" id="name" class="form-control" placeholder="請輸入客戶名稱" />
+       <input type="text" th:field="*{name}" id="name" class="form-control" placeholder="請輸入部門名稱" />
+       <span class="fieldError" th:if="${#fields.hasErrors('*{name}')}" th:errors="*{name}"></span>
        <br />
       </div>
       <input type="submit" th:value="${_method}" class="btn btn-primary"/>
       <a th:href="@{/customer/}" class="btn btn-warning">重置</a>
     </form>
     <p/>
-    <h1>客戶列表</h1><p/>
-    <table border="1" class="table table-striped table-responsive-md">
-     <thead>
-      <tr>
-       <th>序號</th>
-       <th>客戶名稱</th>
-       <th>訂單</th>
-       <th>修改</th>
-       <th>修改(跳頁)</th>
-       <th>刪除</th>
-      </tr>
-     </thead>
-     <tbody>
-      <tr th:each="c : ${customers}">
-       <td th:text="${c.id}"></td>
-       <td th:text="${c.name}"></td>
-       <td></td>
-       <td>
-        <a th:href="@{/customer/{cid}(cid=${c.id})}" class="btn btn-primary">編輯</a>
-       </td>
-       <td>
-        <a th:href="@{/customer/edit/{cid}(cid=${c.id})}" class="btn btn-primary">編輯(跳頁)</a>
-       </td>
-        <td>
-        <a th:href="@{/customer/delete/{cid}(cid=${c.id})}" class="btn btn-danger">刪除</a>
-       </td>
-      </tr>
-     </tbody>
-    </table>
     <!-- Footer 區 -->
      <div th:include="footer :: footer"></div>
   </div> 

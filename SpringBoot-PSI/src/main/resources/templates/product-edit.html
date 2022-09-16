@@ -15,28 +15,25 @@
     <!-- Header 區 html名稱 :: 標籤名稱 -->
     <div th:include="header :: header"></div>
     <!-- Content 區 th:field = HTML name / value -->
-    <h1>新增員工</h1><p/>
-    <form action="#" th:action="@{/employee/update}" 
-                     th:object="${employee}"
+    <h1>新增商品</h1><p/>
+    <form action="#" th:action="@{/product/update}" 
+                     th:object="${product}"
                      th:method="${_method}">
       <div class="form-group">
        <input type="hidden" th:field="*{id}" />
-       <label>員工名稱</label>
-       <input type="text" th:field="*{name}" id="name" class="form-control" placeholder="請輸入部門名稱" />
-       <span class="fieldError" th:if="${#fields.hasErrors('*{name}')}" th:errors="*{name}"></span>
+       <label>商品名稱</label>
+       <input type="text" th:field="*{name}" id="name" class="form-control" placeholder="請輸入客戶名稱" />
        <br />
-       <label>部門清單</label>
-       <select  th:field="*{department.id}" class="form-control select2">
-         <option th:each="dept:${departments}" 
-                 th:value="${dept.id}"
-			     th:text="${dept.name}"
-			    />
-       </select>
+       <label>商品成本</label>
+       <input type="number" th:field="*{cost}" id="cost" class="form-control" placeholder="請輸入客戶名稱" />
+       <br />
+       <label>商品價格</label>
+       <input type="number" th:field="*{price}" id="price" class="form-control" placeholder="請輸入客戶名稱" />
+       <br />
       </div>
       <input type="submit" th:value="${_method}" class="btn btn-primary"/>
-      <a th:href="@{/employee/}" class="btn btn-warning">重置</a>
+      <a th:href="@{/product/}" class="btn btn-warning">重置</a>
     </form>
-    <p/>
     <!-- Footer 區 -->
      <div th:include="footer :: footer"></div>
   </div> 

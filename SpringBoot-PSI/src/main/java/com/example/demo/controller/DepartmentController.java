@@ -58,7 +58,7 @@ public class DepartmentController {
 		return "redirect:./";
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("/")
 	public String update(Model model , @ModelAttribute Department department) {
 	   departmentRepository.save(department);
 	   return "redirect:./";

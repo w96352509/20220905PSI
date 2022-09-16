@@ -68,7 +68,6 @@ public class EmployeeController {
 	@PutMapping("/")
 	public String update(Model model , @Valid @ModelAttribute Employee employee , BindingResult result)  {
 		if(result.hasErrors()) {
-			model.addAttribute("employee" , employeeRepository.findById(employee.getId()));
 			model.addAttribute("_method" , "PUT");
 			model.addAttribute("departments" , departmentRepository.findAll());
 			model.addAttribute("employees" , employeeRepository.findAll());
@@ -81,7 +80,6 @@ public class EmployeeController {
 	@PutMapping("/update")
 	public String updatePage(Model model , @Valid @ModelAttribute Employee employee , BindingResult result)  {
 		if(result.hasErrors()) {
-			model.addAttribute("employee" , employeeRepository.findById(employee.getId()));
 			model.addAttribute("_method" , "PUT");
 			model.addAttribute("departments" , departmentRepository.findAll());
 			model.addAttribute("employees" , employeeRepository.findAll());

@@ -24,6 +24,7 @@
        <input type="text" th:field="*{name}" id="name" class="form-control" placeholder="請輸入部門名稱" />
       </div>
       <input type="submit" th:value="${_method}" class="btn btn-primary"/>
+      <a th:href="@{/department/}" class="btn btn-warning">重置</a>
     </form>
     <p/>
     <h1>部門列表</h1><p/>

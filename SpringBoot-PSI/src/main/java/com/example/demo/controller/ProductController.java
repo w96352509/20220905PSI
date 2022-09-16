@@ -11,59 +11,61 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.Customer;
+import com.example.demo.entity.Product;
 import com.example.demo.repository.CustomerRepository;
+import com.example.demo.repository.ProductRepository;
 
 @Controller
-@RequestMapping("/customer")
-public class CustomerController {
+@RequestMapping("/product")
+public class ProductController {
 
 	@Autowired
-	private CustomerRepository customerRepository;
+	private  ProductRepository productRepository;
 	
 	@GetMapping("/")
-	public String index(Model model , @ModelAttribute Customer customer) {
-		model.addAttribute("customers", customerRepository.findAll());
+	public String index(Model model , @ModelAttribute Product product) {
+		model.addAttribute("products", productRepository.findAll());
 		model.addAttribute("_method" , "POST");
-		return "customer";
+		return "product";
 	}
 	
 	@GetMapping("/{id}")
 	public String get(@PathVariable("id") Long id , Model model ) {
-		model.addAttribute("customer" , customerRepository.findById(id));
-		model.addAttribute("customers", customerRepository.findAll());
+		model.addAttribute("product", productRepository.findById(id));
+		model.addAttribute("products", productRepository.findAll());
 		model.addAttribute("_method" , "PUT");
-		return "customer";
+		return "product";
 	}
 	
 	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable("id") Long id , Model model ) {
-		model.addAttribute("customer" , customerRepository.findById(id));
-		model.addAttribute("customers", customerRepository.findAll());
+		model.addAttribute("product", productRepository.findById(id));
+		model.addAttribute("products", productRepository.findAll());
 		model.addAttribute("_method" , "PUT");
-		return "customer-edit";
+		return "product-edit";
 	}
 	
 	@PutMapping("/")
-	public String update(Model model , @ModelAttribute Customer customer) {
-		customerRepository.save(customer);
+	public String update(Model model , @ModelAttribute Product product) {
+		productRepository.save(product);
 		return "redirect:./";
 	}
 	
 	@PutMapping("/update")
-	public String updatePage(Model model , @ModelAttribute Customer customer) {
-		customerRepository.save(customer);
+	public String updatePage(Model model , @ModelAttribute Product product) {
+		productRepository.save(product);
 		return "redirect:./";
 	}
 	
 	@PostMapping("/")
-	public String add(@ModelAttribute Customer customer) {
-		customerRepository.save(customer);
+	public String add(@ModelAttribute Product product ) {
+		productRepository.save(product);
 		return"redirect:./";
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable("id") Long id) {
-		customerRepository.deleteById(id);
+		productRepository.deleteById(id);
 		return"redirect:../";
 	}
 	
