@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>PSI 員工資料表</title>
+<style type="text/css">
+	.fieldError{color: red;}
+</style>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+</head>
+<body>
+  <div class="container my-2">
+    <!-- Header 區 html名稱 :: 標籤名稱 -->
+    <div th:include="header :: header"></div>
+    <!-- Content 區 th:field = HTML name / value -->
+    <h1>新增採購單</h1><p/>
+    <form action="#" th:action="@{/purchase/}" 
+                     th:object="${purchase}"
+                     th:method="${_method}">
+      <div class="form-group">
+       <input type="hidden" th:field="*{id}" />
+       <label>採購日期</label>
+       <input type="date" th:value="${#dates.format(#dates.createNow(),'yyyy-MM-dd')}" 
+              id="date" class="form-control" placeholder="請輸入部門名稱" />
+       <br />
+       <label>採購清單</label>
+       <select  th:field="*{supplier.id}" class="form-control select2">
+         <option th:each="s:${suppliers}" 
+                 th:value="${s.id}"
+			     th:text="${s.name}"
+			    />
+       </select>
+       <br />
+       <label>員工清單</label>
+       <select  th:field="*{employee.id}" class="form-control select2">
+         <option th:each="e:${employees}" 
+                 th:value="${e.id}"
+			     th:text="${e.name}"
+			    />
+       </select>
+      </div>
+      <input type="submit" th:value="${_method}" class="btn btn-primary"/>
+      <a th:href="@{/puchase/}" class="btn btn-warning">重置</a>
+    </form>
+    <p/>
+    <h1>採購單列表</h1><p/>
+    <table border="1" class="table table-striped table-responsive-md">
+     <thead>
+      <tr>
+       <th>序號</th>
+       <th>日期</th>
+       <th>經手員工</th>
+       <th>供應商</th>
+       <th>購買商品</th>
+       <th>總價</th>
+       <th>採購明細</th>
+       <th>修改</th>
+       <th>修改(跳頁)</th>
+       <th>刪除</th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr th:each="p : ${purchases}">
+       <td th:text="${p.id}"></td>
+       <td th:text="${p.date}"></td>
+       <td th:text="${p.employee.name}"></td>
+       <td th:text="${p.supplier.name}"></td>
+       <td>
+        <span th:each=" pi : ${p.purchaseItems}">
+         <a th:text="${pi.product.name}"></a>
+        </span>
+       </td>
+       <!-- 寫在 Entity Purchase -> getTotal() -->
+       <td th:text="${p.total}"></td>
+       <td>
+        <a th:href="@{/purchase/{pid}/item(pid=${p.id})}" class="btn btn-primary">明細</a>
+       </td>
+       <td>
+        <a th:href="@{/purchase/{pid}(pid=${p.id})}" class="btn btn-primary">編輯</a>
+       </td>
+       <td>
+        <a th:href="@{/purchase/edit/{pid}(pid=${p.id})}" class="btn btn-primary">編輯(跳頁)</a>
+       </td>
+        <td>
+        <a th:href="@{/purchase/delete/{pid}(pid=${p.id})}" class="btn btn-danger">刪除</a>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <!-- Footer 區 -->
+     <div th:include="footer :: footer"></div>
+  </div> 
+</body>
+</html>
